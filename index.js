@@ -37,19 +37,20 @@ app.post('/registerUser', (req, res) => {
     photoURL: req.photoURL,
     disabled: false,
   })
-    .then((userRecord) => {
+    .then(async (userRecord) => {
       // console.log('Successfully created new user:', userRecord.uid);
+      try {
+        const token = await admin.auth().createCustomToken(userRecord.uid);
+        const result = await firebase.auth().signInWithCustomToken(token);
+        await result.userRecord.sendEmailVerification();
+        await firebase.auth().signOut();
 
-      admin.auth().generateEmailVerificationLink(userRecord.email,)
-        .then(() => {
-          // Construct email verification template, embed the link and send
-          // using custom SMTP server.
-          return sendCustomVerificationEmail(userRecord.email, userRecord.displayName,);
-        })
-        .catch((error) => {
-          res.send(error)
-          // Some error occurred.
-        });
+        res.send("Email Verification Sent!")
+
+      } catch (err) {
+
+        res.send("Error sending Email Verification!");
+      }
     })
     .catch((error) => {
       console.log('Error creating new user:', error);
