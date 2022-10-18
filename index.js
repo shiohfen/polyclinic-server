@@ -84,7 +84,7 @@ app.post('/deleteUser', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res('please work');
+  res.send('please work');
 });
 
 app.listen(process.env.PORT || 5000, () => {
