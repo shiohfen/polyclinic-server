@@ -50,7 +50,7 @@ app.post('/registerUser', (req, res) => {
 
       } catch (err) {
 
-        res.send("Error sending Email Verification!");
+        res.send("Error sending Email Verification!", err);
       }
     })
     .catch((error) => {
