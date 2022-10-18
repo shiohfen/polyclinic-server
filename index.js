@@ -3,6 +3,7 @@ const cors = require('cors');
 
 const app = express();
 const admin = require('firebase-admin');
+const firebase = require('firebase/compat/app');
 
 const { private_key } = JSON.parse(process.env.private_key)
 
