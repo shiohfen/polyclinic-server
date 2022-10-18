@@ -3,12 +3,9 @@ const cors = require('cors');
 const bodyParser = require('body-parser')
 
 const app = express();
-
+app.use(cors());
 app.use(bodyParser.json())
 
-app.use(cors({
-  origin: '*'
-}));
 
 
 const admin = require('firebase-admin');
@@ -36,8 +33,6 @@ var serviceAccount = {
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
-
-app.options('*', cors());
 
 app.post('/registerUser', (req, res) => {
 
