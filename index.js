@@ -40,18 +40,17 @@ app.post('/registerUser', (req, res) => {
   })
     .then(async (userRecord) => {
       // console.log('Successfully created new user:', userRecord.uid);
-      try {
-        const token = await admin.auth().createCustomToken(userRecord.uid);
-        const result = await firebase.auth().signInWithCustomToken(token);
-        await result.userRecord.sendEmailVerification();
-        await firebase.auth().signOut();
 
-        res.send("Email Verification Sent!")
+      admin.auth().generateEmailVerificationLink(userRecord.email)
+        .then(() => {
+          res.send("Email Verification Sent!")
 
-      } catch (err) {
+        })
+        .catch((err) => {
+          res.send("Error sending Email Verification!", err);
 
-        res.send("Error sending Email Verification!", err);
-      }
+        }
+        )
     })
     .catch((error) => {
       console.log('Error creating new user:', error);
