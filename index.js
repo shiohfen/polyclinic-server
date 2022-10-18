@@ -84,7 +84,9 @@ app.post('/deleteUser', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-      console.log('Hello');
+  console.log('Hello');
 });
 
-app.listen(process.env.PORT || 5000)
+app.listen(process.env.PORT || 5000, () => {
+  console.log('Listening on por: ' + process.env.PORT || 5000);
+})
