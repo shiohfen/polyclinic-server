@@ -3,9 +3,11 @@ const cors = require('cors');
 const bodyParser = require('body-parser')
 
 const app = express();
-app.use(cors());
+
 app.use(bodyParser.json())
 
+app.use(cors({ origin: true }));
+app.options("*", cors())
 
 
 const admin = require('firebase-admin');
