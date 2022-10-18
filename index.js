@@ -40,7 +40,7 @@ app.post('/registerUser', (req, res) => {
     .then((userRecord) => {
       // console.log('Successfully created new user:', userRecord.uid);
 
-      admin.auth().generateEmailVerificationLink(req.email,)
+      admin.auth().generateEmailVerificationLink(userRecord.email,)
         .then(() => {
           // Construct email verification template, embed the link and send
           // using custom SMTP server.
