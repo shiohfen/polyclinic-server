@@ -3,7 +3,6 @@ const cors = require('cors');
 
 const app = express();
 const admin = require('firebase-admin');
-const port = 3000;
 
 const { private_key } = JSON.parse(process.env.private_key)
 
@@ -88,4 +87,4 @@ app.get('/', (req, res) => {
       console.log('Hello');
 });
 
-app.listen(port, () => console.log(`listening on port ${port}!`));
+app.listen(process.env.PORT || 5000)
