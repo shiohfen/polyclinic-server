@@ -26,7 +26,7 @@ admin.initializeApp({
 
 app.use(cors());
 
-app.get('/registerUser', (req, res) => {
+app.post('/registerUser', (req, res) => {
   admin.auth().createUser({
     email: req.email,
     emailVerified: false,
@@ -45,7 +45,7 @@ app.get('/registerUser', (req, res) => {
     });
 });
 
-app.get('/disableUser', (req, res) => {
+app.post('/disableUser', (req, res) => {
   admin.auth().updateUser(req.uid, {
     disabled: true,
   })
@@ -58,7 +58,7 @@ app.get('/disableUser', (req, res) => {
     });
 });
 
-app.get('/enableUser', (req, res) => {
+app.post('/enableUser', (req, res) => {
   admin.auth().updateUser(req.uid, {
     disabled: false,
   })
@@ -71,7 +71,7 @@ app.get('/enableUser', (req, res) => {
     });
 });
 
-app.get('/deleteUser', (req, res) => {
+app.post('/deleteUser', (req, res) => {
   admin.auth()
     .deleteUser(req.uid)
     .then(() => {
