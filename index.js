@@ -38,8 +38,18 @@ app.post('/registerUser', (req, res) => {
     disabled: false,
   })
     .then((userRecord) => {
-      // See the UserRecord reference doc for the contents of userRecord.
-      console.log('Successfully created new user:', userRecord.uid);
+      // console.log('Successfully created new user:', userRecord.uid);
+
+      admin.auth().generateEmailVerificationLink(req.email,)
+        .then(() => {
+          // Construct email verification template, embed the link and send
+          // using custom SMTP server.
+          return sendCustomVerificationEmail(userRecord.email, userRecord.displayName,);
+        })
+        .catch((error) => {
+          res.send(error)
+          // Some error occurred.
+        });
     })
     .catch((error) => {
       console.log('Error creating new user:', error);
