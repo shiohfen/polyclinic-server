@@ -27,7 +27,9 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
 
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 app.use(bodyParser.json())
 
 app.post('/registerUser', (req, res) => {
