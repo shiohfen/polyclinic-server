@@ -3,8 +3,18 @@ const cors = require('cors');
 const bodyParser = require('body-parser')
 
 const app = express();
+
+app.use(cors({
+  origin: '*'
+}));
+
+app.use(bodyParser.json())
+
+
 const admin = require('firebase-admin');
 const firebase = require('firebase/compat/app');
+
+
 
 const { private_key } = JSON.parse(process.env.private_key)
 
@@ -27,10 +37,6 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
 
-app.use(cors({
-  origin: '*'
-}));
-app.use(bodyParser.json())
 
 app.post('/registerUser', (req, res) => {
 
@@ -67,7 +73,7 @@ app.post('/disableUser', (req, res) => {
   })
     .then((userRecord) => {
       // See the UserRecord reference doc for the contents of userRecord.
-      console.log('Successfully updated user', req.uid);
+      console.log('Successfully updated user', userRecord.uid);
     })
     .catch((error) => {
       conle.log('Error creating new user:', error);
@@ -80,7 +86,7 @@ app.post('/enableUser', (req, res) => {
   })
     .then((userRecord) => {
       // See the UserRecord reference doc for the contents of userRecord.
-      console.log('Successfully updated user', req.body.uid);
+      console.log('Successfully updated user', userRecord.uid);
     })
     .catch((error) => {
       conle.log('Error creating new user:', error);
