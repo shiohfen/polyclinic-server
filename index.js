@@ -43,22 +43,12 @@ app.post('/registerUser', (req, res) => {
     emailVerified: false,
     phoneNumber: req.body.contact,
     password: req.body.password,
-    displayName: req.body.firstName + ' ' + req.lastName,
+    displayName: req.body.firstName + ' ' + req.body.lastName,
     photoURL: req.body.photoURL,
     disabled: false,
   })
     .then(async (userRecord) => {
-      // console.log('Successfully created new user:', userRecord.uid);
-      res.send(userRecord.uid)
-      // admin.auth().generateEmailVerificationLink(userRecord.email,)
-      //   .then((link) => {
-      //     // Construct email verification template, embed the link and send
-      //     res.send('Email Verification Sent!'+ link)
-      //   })
-      //   .catch((error) => {
-      //     // Some error occurred.
-      //     console.log('Error sending Email Verification!:', error);
-      //   });
+      console.log('Successfully created new user:', userRecord.uid);
     })
     .catch((error) => {
       console.log('Error creating new user:', error);
