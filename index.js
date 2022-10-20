@@ -49,9 +49,13 @@ app.post('/registerUser', (req, res) => {
   })
     .then(async (userRecord) => {
       console.log('Successfully created new user:', userRecord.uid);
+      res.send();
+
     })
     .catch((error) => {
       console.log('Error creating new user:', error);
+      res.send();
+
     });
 });
 
@@ -62,9 +66,14 @@ app.post('/disableUser', (req, res) => {
     .then((userRecord) => {
       // See the UserRecord reference doc for the contents of userRecord.
       console.log('Successfully updated user', userRecord.uid);
+      res.send();
+
     })
     .catch((error) => {
+
       conle.log('Error creating new user:', error);
+      res.send();
+
     });
 });
 
@@ -75,9 +84,13 @@ app.post('/enableUser', (req, res) => {
     .then((userRecord) => {
       // See the UserRecord reference doc for the contents of userRecord.
       console.log('Successfully updated user', userRecord.uid);
+      res.send();
+
     })
     .catch((error) => {
       conle.log('Error creating new user:', error);
+      res.send();
+
     });
 });
 
@@ -86,9 +99,13 @@ app.post('/deleteUser', (req, res) => {
     .deleteUser(req.body.uid)
     .then(() => {
       console.log('Successfully deleted user');
+      res.send();
+
     })
     .catch((error) => {
       console.log('Error deleting user:', error);
+      res.send();
+
     });
 });
 
@@ -100,6 +117,7 @@ app.post('/updateEmail', (req, res) => {
     .then((userRecord) => {
       // See the UserRecord reference doc for the contents of userRecord.
       console.log('Successfully updated user', userRecord.toJSON());
+      res.send();
     })
     .catch((error) => {
       console.log('Error updating user:', error);
