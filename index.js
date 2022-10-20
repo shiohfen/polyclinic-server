@@ -103,6 +103,7 @@ app.post('/updateEmail', (req, res) => {
     })
     .catch((error) => {
       console.log('Error updating user:', error);
+      res.send();
     });
 });
 
