@@ -48,8 +48,7 @@ app.post('/registerUser', (req, res) => {
   })
     .then(async (userRecord) => {
       console.log('Successfully created new user:', userRecord.uid);
-      res.send({ uid: userRecord.uid });
-
+      res.json({"uid": userRecord.uid})
     })
     .catch((error) => {
       console.log('Error creating new user:', error);
