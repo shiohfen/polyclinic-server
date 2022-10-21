@@ -41,7 +41,7 @@ app.post('/registerUser', (req, res) => {
   admin.auth().createUser({
     email: req.body.email,
     emailVerified: false,
-    phoneNumber: req.body.contact,
+    phoneNumber: req.body.phoneNumber,
     password: req.body.password,
     displayName: req.body.firstName + ' ' + req.body.lastName,
     photoURL: req.body.photoURL,
