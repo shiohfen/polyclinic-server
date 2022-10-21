@@ -48,7 +48,7 @@ app.post('/registerUser', (req, res) => {
   })
     .then(async (userRecord) => {
       console.log('Successfully created new user:', userRecord.uid);
-      res.json({"uid": userRecord.uid})
+      res.send('test')
     })
     .catch((error) => {
       console.log('Error creating new user:', error);
@@ -68,7 +68,6 @@ app.post('/disableUser', (req, res) => {
 
     })
     .catch((error) => {
-
       conle.log('Error creating new user:', error);
       res.send();
 
