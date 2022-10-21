@@ -49,7 +49,7 @@ app.post('/registerUser', (req, res) => {
   })
     .then(async (userRecord) => {
       console.log('Successfully created new user:', userRecord.uid);
-      res.send();
+      res.send(userRecord.uid);
 
     })
     .catch((error) => {
