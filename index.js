@@ -37,7 +37,6 @@ admin.initializeApp({
 });
 
 app.post('/registerUser', (req, res) => {
-
   admin.auth().createUser({
     email: req.body.email,
     emailVerified: false,
@@ -48,7 +47,7 @@ app.post('/registerUser', (req, res) => {
   })
     .then(async (userRecord) => {
       console.log('Successfully created new user:', userRecord.uid);
-      res.send('test')
+      res.send(userRecord.uid)
     })
     .catch((error) => {
       console.log('Error creating new user:', error);
