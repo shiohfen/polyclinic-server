@@ -41,7 +41,6 @@ app.post('/registerUser', (req, res) => {
   admin.auth().createUser({
     email: req.body.email,
     emailVerified: false,
-    phoneNumber: req.body.phoneNumber,
     password: req.body.password,
     displayName: req.body.firstName + ' ' + req.body.lastName,
     photoURL: req.body.photoURL,
@@ -49,7 +48,7 @@ app.post('/registerUser', (req, res) => {
   })
     .then(async (userRecord) => {
       console.log('Successfully created new user:', userRecord.uid);
-      res.send(userRecord.uid);
+      res.send({ uid: userRecord.uid });
 
     })
     .catch((error) => {
