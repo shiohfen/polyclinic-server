@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors');
 const bodyParser = require('body-parser')
-
+const client = require('twilio')('ACda737055fd889684f26ca50f0a91703b', '8ecdb3e3b53c7a692e9d21a04e4b7179',);
 const app = express();
 
 app.use(bodyParser.json())
@@ -124,6 +124,13 @@ app.post('/updateEmail', (req, res) => {
 app.get('/', (req, res) => {
   res.send('please work');
 });
+
+app.post('/verifyPhone', (req, res) => {
+  client.verify.v2.services('ACda737055fd889684f26ca50f0a91703b')
+    .verifications
+    .create({ to: '+639487505373', channel: 'sms' })
+    .then(verification => console.log(verification.status));
+})
 
 app.listen(process.env.PORT || 5000, () => {
   console.log('Listening on port: ' + process.env.PORT || 5000);
