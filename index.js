@@ -122,10 +122,6 @@ app.post('/updateEmail', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res.send('please work');
-});
-
-app.post('/verifyPhone', (req, res) => {
   try {
     client.verify.v2.services('ACda737055fd889684f26ca50f0a91703b')
       .verifications
@@ -134,8 +130,20 @@ app.post('/verifyPhone', (req, res) => {
   } catch (error) {
     res.send(error)
   }
+  // res.send('please work');
+});
 
-})
+// app.post('/verifyPhone', (req, res) => {
+//   try {
+//     client.verify.v2.services('ACda737055fd889684f26ca50f0a91703b')
+//       .verifications
+//       .create({ to: '+63948750373', channel: 'sms' })
+//       .then(verification => console.log(verification.status));
+//   } catch (error) {
+//     res.send(error)
+//   }
+
+// })
 
 app.listen(process.env.PORT || 5000, () => {
   console.log('Listening on port: ' + process.env.PORT || 5000);
