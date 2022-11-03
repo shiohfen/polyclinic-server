@@ -126,10 +126,15 @@ app.get('/', (req, res) => {
 });
 
 app.post('/verifyPhone', (req, res) => {
-  client.verify.v2.services('ACda737055fd889684f26ca50f0a91703b')
-    .verifications
-    .create({ to: '+639487505373', channel: 'sms' })
-    .then(verification => console.log(verification.status));
+  try {
+    client.verify.v2.services('ACda737055fd889684f26ca50f0a91703b')
+      .verifications
+      .create({ to: '+639487505373', channel: 'sms' })
+      .then(verification => console.log(verification.status));
+  } catch (error) {
+    res.send(error)
+  }
+
 })
 
 app.listen(process.env.PORT || 5000, () => {
