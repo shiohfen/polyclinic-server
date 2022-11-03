@@ -129,7 +129,7 @@ app.post('/verifyPhone', (req, res) => {
   try {
     client.verify.v2.services('ACda737055fd889684f26ca50f0a91703b')
       .verifications
-      .create({ to: '+639487505373', channel: 'sms' })
+      .create({ to: '+63948750373', channel: 'sms' })
       .then(verification => console.log(verification.status));
   } catch (error) {
     res.send(error)
