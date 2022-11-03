@@ -4,6 +4,13 @@ const bodyParser = require('body-parser')
 // const client = require('twilio')('ACda737055fd889684f26ca50f0a91703b', '8ecdb3e3b53c7a692e9d21a04e4b7179',);
 const app = express();
 
+const Vonage = require('@vonage/server-sdk')
+
+const vonage = new Vonage({
+  apiKey: "df5e7b6c",
+  apiSecret: "h9ItRxMo6whMfel5"
+})
+
 app.use(bodyParser.json())
 
 app.use(cors({ origin: true }));
@@ -140,17 +147,23 @@ app.get('/', (req, res) => {
   res.send('please work');
 });
 
-// app.post('/verifyPhone', (req, res) => {
-//   try {
-//     client.verify.v2.services('ACda737055fd889684f26ca50f0a91703b')
-//       .verifications
-//       .create({ to: '+63948750373', channel: 'sms' })
-//       .then(verification => console.log(verification.status));
-//   } catch (error) {
-//     res.send(error)
-//   }
-
-// })
+app.post('/sendSMS', (req, res) => {
+  try {
+    vonage.message.sendSms("Polyclinic", req.body.number, req.body.text, (err, responseData) => {
+      if (err) {
+        console.log(err);
+      } else {
+        if (responseData.messages[0]['status'] === "0") {
+          console.log("Message sent successfully.");
+        } else {
+          console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+        }
+      }
+    })
+  } catch (error) {
+    res.send(error)
+  }
+})
 
 app.listen(process.env.PORT || 5000, () => {
   console.log('Listening on port: ' + process.env.PORT || 5000);
