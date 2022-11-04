@@ -148,21 +148,21 @@ app.get('/', (req, res) => {
 });
 
 app.post('/sendSMS', (req, res) => {
-  try {
-    vonage.message.sendSms("Polyclinic", req.body.number, req.body.text, (err, responseData) => {
-      if (err) {
-        console.log(err);
+
+  vonage.message.sendSms("Polyclinic", req.body.number, req.body.text, (err, responseData) => {
+    if (err) {
+      console.log(err);
+    } else {
+      if (responseData.messages[0]['status'] === "0") {
+        console.log("Message sent successfully.");
+        res.send()
       } else {
-        if (responseData.messages[0]['status'] === "0") {
-          console.log("Message sent successfully.");
-        } else {
-          console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
-        }
+        console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+        res.send(responseData.messages[0])
       }
-    })
-  } catch (error) {
-    res.send(error)
-  }
+    }
+  })
+
 })
 
 app.listen(process.env.PORT || 5000, () => {
