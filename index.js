@@ -7,8 +7,8 @@ const app = express();
 const Vonage = require('@vonage/server-sdk')
 
 const vonage = new Vonage({
-  apiKey: "df5e7b6c",
-  apiSecret: "h9ItRxMo6whMfel5"
+  apiKey: "9f78ef9c",
+  apiSecret: "CYOcdqm4Lzd2jeJE"
 })
 
 app.use(bodyParser.json())
