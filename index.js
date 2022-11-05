@@ -58,7 +58,7 @@ app.post('/registerUser', (req, res) => {
     })
     .catch((error) => {
       console.log('Error creating new user:', error);
-      res.send();
+      res.send(error);
 
     });
 });
@@ -74,8 +74,8 @@ app.post('/disableUser', (req, res) => {
 
     })
     .catch((error) => {
-      conle.log('Error creating new user:', error);
-      res.send();
+      console.log('Error:', error);
+      res.send(error);
 
     });
 });
@@ -91,8 +91,8 @@ app.post('/enableUser', (req, res) => {
 
     })
     .catch((error) => {
-      conle.log('Error creating new user:', error);
-      res.send();
+      console.log('Error:', error);
+      res.send(error);
 
     });
 });
@@ -107,7 +107,7 @@ app.post('/deleteUser', (req, res) => {
     })
     .catch((error) => {
       console.log('Error deleting user:', error);
-      res.send();
+      res.send(error);
 
     });
 });
@@ -124,7 +124,7 @@ app.post('/updateEmail', (req, res) => {
     })
     .catch((error) => {
       console.log('Error updating user:', error);
-      res.send();
+      res.send(error);
     });
 });
 
