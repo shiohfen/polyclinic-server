@@ -4,6 +4,13 @@ const bodyParser = require('body-parser')
 // const client = require('twilio')('ACda737055fd889684f26ca50f0a91703b', '8ecdb3e3b53c7a692e9d21a04e4b7179',);
 const app = express();
 
+
+var accountSid = "ACda737055fd889684f26ca50f0a91703b" // Your Account SID from www.twilio.com/console
+var authToken = "8ecdb3e3b53c7a692e9d21a04e4b7179" // Your Auth Token from www.twilio.com/console
+
+const client = require('twilio')(accountSid, authToken, {
+  lazyLoading: true
+});
 const Vonage = require('@vonage/server-sdk')
 
 const vonage = new Vonage({
@@ -69,7 +76,7 @@ app.post('/disableUser', (req, res) => {
   })
     .then((userRecord) => {
       // See the UserRecord reference doc for the contents of userRecord.
-      console.log('Successfully updated user', userRecord.uid);
+      console.log('Successfully archived user', userRecord.uid);
       res.send();
 
     })
@@ -86,7 +93,7 @@ app.post('/enableUser', (req, res) => {
   })
     .then((userRecord) => {
       // See the UserRecord reference doc for the contents of userRecord.
-      console.log('Successfully updated user', userRecord.uid);
+      console.log('Successfully restored user', userRecord.uid);
       res.send();
 
     })
@@ -158,7 +165,20 @@ app.post('/sendSMS', (req, res) => {
         res.send()
       } else {
         console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
-        res.send(responseData.messages[0])
+
+        client.messages
+          .create({
+            body: req.body.text,
+            messagingServiceSid: 'MG756975548d9e73bd8abcdb41ceb547a7',
+            to: req.body.number
+          })
+          .then(() => {
+            res.send("Message sent!")
+          })
+          .catch((err) => {
+            console.log(err)
+            res.send(err)
+          })
       }
     }
   })
