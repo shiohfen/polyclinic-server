@@ -156,32 +156,32 @@ app.get('/', (req, res) => {
 
 app.post('/sendSMS', (req, res) => {
 
-  vonage.message.sendSms("Polyclinic", req.body.number, req.body.text, (err, responseData) => {
-    if (err) {
-      console.log(err);
-    } else {
-      if (responseData.messages[0]['status'] === "0") {
-        console.log("Message sent successfully.");
-        res.send()
-      } else {
-        console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+  // vonage.message.sendSms("Polyclinic", req.body.number, req.body.text, (err, responseData) => {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     if (responseData.messages[0]['status'] === "0") {
+  //       console.log("Message sent successfully.");
+  //       res.send()
+  //     } else {
+  //       console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
 
-        client.messages
-          .create({
-            body: req.body.text,
-            messagingServiceSid: 'MG756975548d9e73bd8abcdb41ceb547a7',
-            to: req.body.number
-          })
-          .then(() => {
-            res.send("Message sent!")
-          })
-          .catch((err) => {
-            console.log(err)
-            res.send(err)
-          })
-      }
-    }
-  })
+  client.messages
+    .create({
+      body: req.body.text,
+      messagingServiceSid: 'MG756975548d9e73bd8abcdb41ceb547a7',
+      to: req.body.number
+    })
+    .then(() => {
+      res.send("Message sent!")
+    })
+    .catch((err) => {
+      console.log(err)
+      res.send(err)
+    })
+  // }
+  // }
+  // })
 
 })
 
