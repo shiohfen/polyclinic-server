@@ -173,6 +173,7 @@ app.post('/sendSMS', (req, res) => {
       to: req.body.number
     })
     .then(() => {
+      console.log("Message sent!")
       res.send("Message sent!")
     })
     .catch((err) => {
