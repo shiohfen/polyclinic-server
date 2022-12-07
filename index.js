@@ -136,21 +136,6 @@ app.post('/updateEmail', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  // try {
-  //   // client.verify.v2.services('ACda737055fd889684f26ca50f0a91703b')
-  //   //   .verifications
-  //   //   .create({ to: '+63948750373', channel: 'sms' })
-  //   //   .then(verification => console.log(verification.status));
-  //   client.messages
-  //     .create({
-  //       body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-  //       from: '+18316180662',
-  //       to: '+63948750373'
-  //     })
-  //     .then(message => console.log(message.sid));
-  // } catch (error) {
-  //   res.send(error)
-  // }
   res.send('please work');
 });
 
