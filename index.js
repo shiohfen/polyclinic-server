@@ -5,8 +5,8 @@ const bodyParser = require('body-parser')
 const app = express();
 
 
-var accountSid = "ACda737055fd889684f26ca50f0a91703b" // Your Account SID from www.twilio.com/console
-var authToken = "f681f6df21b1edaa9df480bbcc8f8cc0" // Your Auth Token from www.twilio.com/console
+var accountSid =  process.env.accountSid // Your Account SID from www.twilio.com/console
+var authToken = process.env.authToken // Your Auth Token from www.twilio.com/console
 
 const client = require('twilio')(accountSid, authToken, {
   lazyLoading: true
