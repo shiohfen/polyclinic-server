@@ -5,8 +5,8 @@ const bodyParser = require('body-parser')
 const app = express();
 
 
-var accountSid = "ACb69368eb43b96ea1e452961ea45e45d0" // Your Account SID from www.twilio.com/console
-var authToken = "8e07652c6efa20aa8d15620fe852c7f7" // Your Auth Token from www.twilio.com/console
+var accountSid = "ACda737055fd889684f26ca50f0a91703b" // Your Account SID from www.twilio.com/console
+var authToken = "f681f6df21b1edaa9df480bbcc8f8cc0" // Your Auth Token from www.twilio.com/console
 
 const client = require('twilio')(accountSid, authToken, {
   lazyLoading: true
@@ -154,7 +154,7 @@ app.post('/sendSMS', (req, res) => {
   client.messages
     .create({
       body: req.body.text,
-      messagingServiceSid: 'MG8be6a3d560f5fd5cd72136c747996086',
+      messagingServiceSid: 'MG756975548d9e73bd8abcdb41ceb547a7',
       to: req.body.number
     })
     .then(() => {
